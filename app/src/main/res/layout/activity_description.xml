@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".activities.DescriptionActivity">
+
+    <android.support.design.widget.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:theme="@style/AppTheme.AppBarOverlay">ddd
+
+    </android.support.design.widget.AppBarLayout>
+
+    <EditText
+        android:id="@+id/schedule_title"
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="108dp"
+        android:inputType="text"
+        android:singleLine="true"
+        android:textColorHint="@color/darkGrey" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="163dp"
+        android:layout_height="45dp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:text="TITLE"
+        android:textSize="32dp" />
+
+    <EditText
+        android:id="@+id/schedule_description"
+        android:layout_width="match_parent"
+        android:layout_height="116dp"
+        android:layout_alignParentStart="true"
+        android:layout_centerVertical="true"
+        android:inputType="textMultiLine"
+        android:maxLines="5"
+        android:textColorHint="@color/darkGrey" />
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="236dp"
+        android:layout_height="107dp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="204dp"
+        android:text="DESCRIPTION"
+        android:textSize="32dp" />
+
+    <Button
+        android:id="@+id/button2"
+        android:layout_width="168dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="347dp"
+        android:text="Add reminder" />
+
+</RelativeLayout>

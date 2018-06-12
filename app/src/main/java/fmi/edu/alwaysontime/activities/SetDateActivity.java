@@ -31,7 +31,7 @@ public class SetDateActivity extends AppCompatActivity {
         ScheduleModel scheduleModel = buildScheduleModel();
         ScheduleService service = new ScheduleService(getApplicationContext());
         long id = service.addSchedule(scheduleModel);
-        Intent intent = new Intent(SetDateActivity.this, SetDateActivity.class);
+        Intent intent = new Intent(SetDateActivity.this, DescriptionActivity.class);
         intent.putExtra(AppConfigurationOptions.SCHEDULE_ACTIVITY_ID, id);
         startActivity(intent);
     }

@@ -8,8 +8,8 @@ import fmi.edu.alwaysontime.util.AppConfigurationOptions;
 
 public class ScheduleDBHelper extends SQLiteOpenHelper {
 
-    public ScheduleDBHelper(Context context) {
-        super(context, AppConfigurationOptions.DATABASE_NAME, null, 1);
+    public ScheduleDBHelper(Context context, int version) {
+        super(context, AppConfigurationOptions.DATABASE_NAME, null, version);
     }
 
     @Override
@@ -19,6 +19,7 @@ public class ScheduleDBHelper extends SQLiteOpenHelper {
 
     @Override
     public void onUpgrade(SQLiteDatabase sqLiteDatabase, int i, int i1) {
-
+        sqLiteDatabase.execSQL(ScheduleConst.SQL_DROP_TABLE);
+        onCreate(sqLiteDatabase);
     }
 }
