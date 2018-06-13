@@ -60,6 +60,7 @@
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="347dp"
+        android:onClick="addReminder"
         android:text="Add reminder" />
 
 </RelativeLayout>
