@@ -25,6 +25,8 @@ public class ScheduleService {
         ContentValues values = new ContentValues();
         values.put(ScheduleConst.DATE_COLUMN, scheduleModel.getDate());
         values.put(ScheduleConst.TIME_COLUMN, scheduleModel.getTime());
+        values.put(ScheduleConst.TITLE_COLUMN, scheduleModel.getTitle());
+        values.put(ScheduleConst.DESCRIPTION_COLUMN, scheduleModel.getDescription());
 
         return db.insert(ScheduleConst.TABLE_NAME, null, values);
     }
@@ -34,8 +36,11 @@ public class ScheduleService {
         ContentValues values = new ContentValues();
         values.put(ScheduleConst.TITLE_COLUMN, title);
         values.put(ScheduleConst.DESCRIPTION_COLUMN, description);
-        String whereClause = String.format("%s=%d", ScheduleConst.ID_COLUMN, id);
-        int count = db.update(ScheduleConst.TABLE_NAME, values, whereClause, null);
+        String whereClause = String.format("%s=?", ScheduleConst.ID_COLUMN);
+        String[] selectionArgs = {String.format("%d", id)};
+        System.out.println(id);
+        int count = db.update(ScheduleConst.TABLE_NAME, values, whereClause, selectionArgs);
+        db.execSQL("UPDATE " + ScheduleConst.TABLE_NAME + " SET title='kris' WHERE id=6");
         System.out.println(count);
         return 1l;
     }
@@ -55,9 +60,9 @@ public class ScheduleService {
         while(cursor.moveToNext()) {
             String date = cursor.getString(cursor.getColumnIndex(ScheduleConst.DATE_COLUMN));
             String time = cursor.getString(cursor.getColumnIndex(ScheduleConst.TIME_COLUMN));
-            String title = cursor.getString(cursor.getColumnIndex(ScheduleConst.DATE_COLUMN));
+            String title = cursor.getString(cursor.getColumnIndex(ScheduleConst.TITLE_COLUMN));
             title = title == null ? "" : title;
-            String description = cursor.getString(cursor.getColumnIndex(ScheduleConst.TIME_COLUMN));
+            String description = cursor.getString(cursor.getColumnIndex(ScheduleConst.DESCRIPTION_COLUMN));
             description = description == null ? "" : description;
             ScheduleModel scheduleModel = new ScheduleModel(date, time);
             scheduleModel.setTitle(title);

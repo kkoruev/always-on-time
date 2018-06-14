@@ -9,8 +9,8 @@ public class ScheduleModel {
 
 
     public ScheduleModel(String date, String time) {
-        this.date = date;
-        this.time = time;
+        this.date = checkNull(date);
+        this.time = checkNull(time);
     }
 
     public String getTitle() {
@@ -18,7 +18,7 @@ public class ScheduleModel {
     }
 
     public void setTitle(String title) {
-        this.title = title;
+        this.title = checkNull(title);
     }
 
     public String getDescription() {
@@ -26,7 +26,7 @@ public class ScheduleModel {
     }
 
     public void setDescription(String description) {
-        this.description = description;
+        this.description = checkNull(description);
     }
 
     public String getDate() {
@@ -34,7 +34,7 @@ public class ScheduleModel {
     }
 
     public void setDate(String date) {
-        this.date = date;
+        this.date = checkNull(date);
     }
 
     public String getTime() {
@@ -42,6 +42,10 @@ public class ScheduleModel {
     }
 
     public void setTime(String time) {
-        this.time = time;
+        this.time = checkNull(time);
+    }
+
+    private String checkNull(String property) {
+        return property == null ? "" : property;
     }
 }

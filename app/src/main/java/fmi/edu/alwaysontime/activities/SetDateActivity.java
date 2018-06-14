@@ -8,13 +8,9 @@ import android.view.View;
 import android.widget.DatePicker;
 import android.widget.TimePicker;
 
-import java.sql.Time;
-
 import fmi.edu.alwaysontime.R;
-import fmi.edu.alwaysontime.db.schedule.ScheduleModel;
-import fmi.edu.alwaysontime.sevices.schedule.ScheduleService;
-import fmi.edu.alwaysontime.util.AppConfigurationOptions;
-import fmi.edu.alwaysontime.util.UtilFunctions;
+import fmi.edu.alwaysontime.shared.SharedConstants;
+import fmi.edu.alwaysontime.shared.UtilFunctions;
 
 public class SetDateActivity extends AppCompatActivity {
 
@@ -28,25 +24,24 @@ public class SetDateActivity extends AppCompatActivity {
     }
 
     public void addSchedule(View view) {
-        ScheduleModel scheduleModel = buildScheduleModel();
-        ScheduleService service = new ScheduleService(getApplicationContext());
-        long id = service.addSchedule(scheduleModel);
         Intent intent = new Intent(SetDateActivity.this, DescriptionActivity.class);
-        intent.putExtra(AppConfigurationOptions.SCHEDULE_ACTIVITY_ID, id);
+        intent.putExtra(SharedConstants.SCHEDULE_DATE, makeDate());
+        intent.putExtra(SharedConstants.SCHEDULE_TIME, makeTime());
         startActivity(intent);
     }
 
-    private ScheduleModel buildScheduleModel() {
+    private String makeDate() {
         DatePicker datePicker = (DatePicker) findViewById(R.id.datePicker);
         int day = datePicker.getDayOfMonth();
         int month = datePicker.getMonth() + 1;
         int year = datePicker.getYear();
+        return UtilFunctions.toDateString(day, month, year);
+    }
 
+    private String makeTime() {
         TimePicker timePicker = (TimePicker) findViewById(R.id.timePicker1);
         int hour = timePicker.getCurrentHour();
         int minute = timePicker.getCurrentMinute();
-
-        return new ScheduleModel(UtilFunctions.toDateString(day, month, year),
-                UtilFunctions.toTimeString(hour, minute));
+        return UtilFunctions.toTimeString(hour, minute);
     }
 }

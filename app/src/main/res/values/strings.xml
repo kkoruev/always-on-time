@@ -5,4 +5,5 @@
     <string name="title_activity_plan">Plan now!</string>
     <string name="title_activity_set_date">SetDateActivity</string>
     <string name="title_activity_description">DescriptionActivity</string>
+    <string name="title_activity_alarm_receiver">AlarmReceiverActivity</string>
 </resources>

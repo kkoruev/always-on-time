@@ -34,7 +34,7 @@ public class PlanActivity extends AppCompatActivity {
 
         List<ScheduleModel> scheduleModelList = scheduleService.retrieveAllSchedules();
         for (ScheduleModel model : scheduleModelList) {
-            listItems.add(model.getDate() + "  " + model.getTime() + " " + model.getTitle());
+            listItems.add(model.getTitle() + " - " + model.getTime() + " " + model.getDate());
         }
         ArrayAdapter<String> adapter = new ArrayAdapter<>(this, R.layout.text_view_file, listItems);
         ListView listView = (ListView) findViewById(R.id.schedules);
@@ -45,6 +45,4 @@ public class PlanActivity extends AppCompatActivity {
         Intent intent = new Intent(PlanActivity.this, SetDateActivity.class);
         startActivity(intent);
     }
-
-
 }

@@ -1,4 +1,4 @@
-package fmi.edu.alwaysontime.util;
+package fmi.edu.alwaysontime.shared;
 
 public class UtilFunctions {
     private UtilFunctions() {
@@ -10,6 +10,6 @@ public class UtilFunctions {
     }
 
     public static String toTimeString(int hour, int minute) {
-        return String.format("%d.%d", hour, minute);
+        return String.format("%d:%d", hour, minute);
     }
 }

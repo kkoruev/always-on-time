@@ -12,7 +12,7 @@ public final class ScheduleConst {
     public static final String ID_COLUMN = "id";
     public static final String TITLE_COLUMN = "title";
     public static final String DESCRIPTION_COLUMN = "description";
-    public static final int VERSION = 2;
+    public static final int VERSION = 3;
 
     public static final String CREATE_TABLE_QUERY =
             String.format("CREATE TABLE %s ( %s id integer PRIMARY KEY, %s text NOT NULL, " +

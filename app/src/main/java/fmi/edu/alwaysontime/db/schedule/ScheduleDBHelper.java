@@ -4,10 +4,9 @@ import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
-import fmi.edu.alwaysontime.util.AppConfigurationOptions;
+import fmi.edu.alwaysontime.shared.AppConfigurationOptions;
 
 public class ScheduleDBHelper extends SQLiteOpenHelper {
-
     public ScheduleDBHelper(Context context, int version) {
         super(context, AppConfigurationOptions.DATABASE_NAME, null, version);
     }
