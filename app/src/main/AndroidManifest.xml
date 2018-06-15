@@ -34,6 +34,10 @@
         <activity
             android:name=".activities.AlarmReceiverActivity"
             android:label="@string/title_activity_alarm_receiver"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".activities.InformationActivity"
+            android:label="@string/title_activity_information"
             android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 

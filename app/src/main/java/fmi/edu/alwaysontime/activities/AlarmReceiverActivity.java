@@ -10,11 +10,15 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.view.MotionEvent;
 import android.view.View;
+import android.widget.Button;
 
 import java.io.IOException;
 
 import fmi.edu.alwaysontime.R;
+import fmi.edu.alwaysontime.sevices.schedule.ScheduleService;
+import fmi.edu.alwaysontime.shared.SharedConstants;
 
 public class AlarmReceiverActivity extends AppCompatActivity {
 
@@ -26,8 +30,21 @@ public class AlarmReceiverActivity extends AppCompatActivity {
         setContentView(R.layout.activity_alarm_receiver);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        System.out.println("HERE");
 
-        playSound(this, getAlarmUri());
+//        playSound(this, getAlarmUri());
+    }
+
+    public void stopAalarm(View view) {
+        mMediaPlayer.stop();
+        long id = getIntent().getLongExtra(SharedConstants.SCHEDULE__ID, -1);
+        ScheduleService scheduleService = new ScheduleService(getApplicationContext());
+        scheduleService.deleteSchedue(id);
+        finish();
+    }
+
+    public void deleteEntry(long id) {
+
     }
 
     private void playSound(Context context, Uri alert){

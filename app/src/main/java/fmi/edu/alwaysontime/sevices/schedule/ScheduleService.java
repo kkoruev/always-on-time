@@ -45,6 +45,19 @@ public class ScheduleService {
         return 1l;
     }
 
+    public long deleteSchedue(long id) {
+        SQLiteDatabase db = dbHelper.getWritableDatabase();
+        // Define 'where' part of query.
+        String selection = ScheduleConst.ID_COLUMN + " = ?";
+        // Specify arguments in placeholder order.
+        String[] selectionArgs = { Long.toString(id) };
+        // Issue SQL statement.
+        int deletedRows = db.delete(ScheduleConst.TABLE_NAME, selection, selectionArgs);
+        db.execSQL("Delete from " + ScheduleConst.TABLE_NAME + " WHERE id=" + id);
+        System.out.println(deletedRows);
+        return 1l;
+    }
+
     public List<ScheduleModel> retrieveAllSchedules() {
         SQLiteDatabase db = dbHelper.getReadableDatabase();
         Cursor cursor  = db.query(
