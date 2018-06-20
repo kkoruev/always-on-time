@@ -58,6 +58,43 @@ public class ScheduleService {
         return 1l;
     }
 
+    public long deleteSchedule(String title) {
+        SQLiteDatabase db = dbHelper.getWritableDatabase();
+        // Define 'where' part of query.
+        String selection = ScheduleConst.TITLE_COLUMN + " = ?";
+        // Specify arguments in placeholder order.
+        String[] selectionArgs = {title};
+        // Issue SQL statement.
+        int deletedRows = db.delete(ScheduleConst.TABLE_NAME, selection, selectionArgs);
+        System.out.println(deletedRows);
+        return 1l;
+    }
+
+    public String getDecription(String title) {
+        SQLiteDatabase db = dbHelper.getWritableDatabase();
+        String[] projection = {
+                ScheduleConst.DESCRIPTION_COLUMN
+        };
+        String selection = ScheduleConst.TITLE_COLUMN + " = ?";
+        String[] selectionArgs = {title};
+
+        Cursor cursor  = db.query(
+                ScheduleConst.TABLE_NAME,
+                projection,
+                selection,
+                selectionArgs,
+                null,
+                null,
+                null
+        );
+        while(cursor.moveToNext()) {
+            String description = cursor.getString(cursor.getColumnIndex(ScheduleConst.DESCRIPTION_COLUMN));
+            description = description == null ? "" : description;
+            return description;
+        }
+        return "";
+    }
+
     public List<ScheduleModel> retrieveAllSchedules() {
         SQLiteDatabase db = dbHelper.getReadableDatabase();
         Cursor cursor  = db.query(

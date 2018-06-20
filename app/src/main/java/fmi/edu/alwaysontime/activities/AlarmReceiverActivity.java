@@ -1,6 +1,7 @@
 package fmi.edu.alwaysontime.activities;
 
 import android.content.Context;
+import android.content.Intent;
 import android.media.AudioManager;
 import android.media.MediaPlayer;
 import android.media.RingtoneManager;
@@ -13,6 +14,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 
 import java.io.IOException;
 
@@ -30,21 +32,20 @@ public class AlarmReceiverActivity extends AppCompatActivity {
         setContentView(R.layout.activity_alarm_receiver);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        System.out.println("HERE");
-
-//        playSound(this, getAlarmUri());
+        String description = getIntent().getExtras().getString(SharedConstants.SCHEDULE_DESCRIPTION);
+        EditText descriptionEditText = (EditText) findViewById(R.id.description_text);
+        descriptionEditText.setKeyListener(null);
+        descriptionEditText.setText(description);
+        playSound(this, getAlarmUri());
     }
 
-    public void stopAalarm(View view) {
+    public void stopAlarm(View view) {
         mMediaPlayer.stop();
-        long id = getIntent().getLongExtra(SharedConstants.SCHEDULE__ID, -1);
+        String title  = getIntent().getExtras().getString(SharedConstants.SCHEDULE_TITLE);
         ScheduleService scheduleService = new ScheduleService(getApplicationContext());
-        scheduleService.deleteSchedue(id);
-        finish();
-    }
-
-    public void deleteEntry(long id) {
-
+        scheduleService.deleteSchedule(title);
+        Intent intent = new Intent(AlarmReceiverActivity.this, PlanActivity.class);
+        startActivity(intent);
     }
 
     private void playSound(Context context, Uri alert){

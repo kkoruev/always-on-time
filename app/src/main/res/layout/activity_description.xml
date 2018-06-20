@@ -22,7 +22,9 @@
         android:layout_marginTop="108dp"
         android:inputType="text"
         android:singleLine="true"
-        android:textColorHint="@color/darkGrey" />
+        android:textColorHint="@color/darkGrey"
+        android:textColorLink="@color/darkGrey"
+        android:backgroundTint="@color/darkGrey"/>
 
     <TextView
         android:id="@+id/textView2"
@@ -41,7 +43,9 @@
         android:layout_centerVertical="true"
         android:inputType="textMultiLine"
         android:maxLines="5"
-        android:textColorHint="@color/darkGrey" />
+        android:textColorHint="@color/darkGrey"
+        android:textColorLink="@color/darkGrey"
+        android:backgroundTint="@color/darkGrey"/>
 
     <TextView
         android:id="@+id/textView3"

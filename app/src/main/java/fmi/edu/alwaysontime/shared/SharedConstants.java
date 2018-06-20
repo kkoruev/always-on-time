@@ -11,4 +11,5 @@ public final class SharedConstants {
     public static final String SCHEDULE_TITLE = ScheduleConst.TITLE_COLUMN;
     public static final String SCHEDULE_TIME = ScheduleConst.TIME_COLUMN;
     public static final String SCHEDULE_DATE = ScheduleConst.DATE_COLUMN;
+    public static final String SCHEDULE_DESCRIPTION = ScheduleConst.DESCRIPTION_COLUMN;
 }

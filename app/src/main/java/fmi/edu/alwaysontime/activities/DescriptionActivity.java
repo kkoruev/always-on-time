@@ -41,7 +41,8 @@ public class DescriptionActivity extends AppCompatActivity {
         Intent intent = new Intent(DescriptionActivity.this, PlanActivity.class);
 
         Intent currentIntent = new Intent(this, AlarmReceiverActivity.class);
-        currentIntent.putExtra(SharedConstants.SCHEDULE__ID, id);
+        currentIntent.putExtra(SharedConstants.SCHEDULE_TITLE, scheduleModel.getTitle());
+        currentIntent.putExtra(SharedConstants.SCHEDULE_DESCRIPTION, scheduleModel.getDescription());
         Calendar calendar = calendarSchedule(scheduleModel);
         PendingIntent pendingIntent = PendingIntent.getActivity(this,
                 requestCode++, currentIntent, PendingIntent.FLAG_CANCEL_CURRENT);
@@ -54,7 +55,8 @@ public class DescriptionActivity extends AppCompatActivity {
     }
 
     private Calendar calendarSchedule(ScheduleModel model) {
-        Calendar cal = Calendar.getInstance(TimeZone.getDefault(), Locale.getDefault());
+        Calendar cal = Calendar.getInstance();
+        System.out.println(cal.getTime());
         String[] date  = model.getDate().split("\\.");
         int day = Integer.parseInt(date[0]);
         int month = Integer.parseInt(date[1]);
@@ -62,11 +64,18 @@ public class DescriptionActivity extends AppCompatActivity {
         String[] time = model.getTime().split(":");
         int hour = Integer.parseInt(time[0]);
         int minutes = Integer.parseInt(time[1]);
-        cal.set(Calendar.DATE, day);
+        int am_pm = -1;
+        if(hour >= 12) {
+            am_pm = 1;
+        } else{
+            am_pm = 0;
+        }
+        cal.set(Calendar.AM_PM, am_pm);
+        cal.set(Calendar.DAY_OF_MONTH, day);
         cal.set(Calendar.MONTH, month - 1);
         cal.set(Calendar.YEAR, year);
-        cal.set(Calendar.SECOND, 0);
-        cal.set(Calendar.HOUR, hour);
+        cal.set(Calendar.HOUR_OF_DAY, hour);
+
         cal.set(Calendar.MINUTE, minutes);
         return cal;
     }
